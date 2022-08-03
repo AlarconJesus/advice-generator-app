@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./css/styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap" rel="stylesheet">
+
+    <title>Frontend Mentor | Advice generator app</title>
+
+    <style>
+      .attribution {
+        margin-top: 40px;
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <article class="article-advice">
+      <h3 class="article-advice-title">ADVICE #<span class="article-id"></span></h3>
+  
+      <p class="article-advice-text">
+        "May your heart by your guiding key"
+      </p>
+
+      <picture class="article-advice-image">
+        <source media="(max-width: 600px)" srcset="./images/pattern-divider-mobile.svg" aria-hidden="true">
+        <img src="./images/pattern-divider-desktop.svg" alt="" aria-hidden="true">
+      </picture>
+
+      <div class="article-advice-dice">
+        <a href="javascript:location.reload()"><img src="./images/icon-dice.svg" alt="icon dice"></a>
+      </div>
+    </article>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="https://twitter.com/JesusAlarcn2">Jesús Alarcón</a>.
+    </div>
+  </body>
+  <script>
+    const title_id = document.querySelector(".article-id");
+    const advice = document.querySelector(".article-advice-text");
+
+    const url = "https://api.adviceslip.com/advice";
+    fetch(url)
+    .then(respuesta => respuesta.json())
+    .then(respuesta => {
+      title_id.innerHTML = respuesta.slip.id;
+      advice.innerHTML = '"' + respuesta.slip.advice + '"';
+    })
+</script>
+</html>
